@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>楽器を楽しむ日2026 ｜ 幹部ダッシュボード</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #181b22;
+    --panel2: #1f232c;
+    --line: #2b303b;
+    --text: #e8eaf0;
+    --muted: #9aa3b2;
+    --accent: #ffb02e;
+    --accent2: #4cc2ff;
+    --green: #38d39f;
+    --red: #ff6b6b;
+    --yellow: #ffd93d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 18px 80px; }
+
+  /* ヘッダー */
+  .head { text-align: center; padding: 12px 0 8px; }
+  .head .kicker { color: var(--accent); letter-spacing: .15em; font-size: 13px; font-weight: 700; }
+  .head h1 { font-size: clamp(22px, 5vw, 34px); margin: 6px 0 4px; }
+  .head .sub { color: var(--muted); font-size: 13px; }
+
+  /* カウントダウン */
+  .countdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 22px 0 6px; }
+  .cd-card {
+    background: linear-gradient(160deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cd-card.cd-future { border-color: #3a3f4d; }
+  .cd-card.cd-today { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(255,176,46,.25); }
+  .cd-card.cd-past { opacity: .55; }
+  .cd-icon { font-size: 26px; }
+  .cd-label { color: var(--muted); font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .cd-num { font-size: 52px; font-weight: 800; line-height: 1; margin: 6px 0; color: var(--accent); }
+  .cd-card.cd-future .cd-num { color: var(--accent2); }
+  .cd-unit { font-size: 18px; font-weight: 700; margin-left: 4px; color: var(--text); }
+  .cd-date { color: var(--muted); font-size: 13px; }
+  .cd-note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+
+  /* 本文（Markdownレンダリング部） */
+  .content h2 {
+    font-size: 19px; margin: 34px 0 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--line);
+  }
+  .content h3 { font-size: 15px; color: var(--accent2); margin: 20px 0 8px; }
+  .content p { margin: 8px 0; }
+  .content blockquote {
+    border-left: 3px solid var(--accent); background: var(--panel);
+    margin: 10px 0; padding: 10px 14px; color: var(--muted); border-radius: 0 8px 8px 0; font-size: 14px;
+  }
+  .content ul { padding-left: 4px; list-style: none; margin: 8px 0; }
+  .content li { padding: 4px 0 4px 0; border-bottom: 1px dashed var(--line); }
+  .content li:last-child { border-bottom: none; }
+  .chk { display: inline-block; width: 1.4em; }
+  .chk.done { color: var(--green); }
+  .chk.todo { color: var(--yellow); }
+  .content hr { border: none; border-top: 1px solid var(--line); margin: 24px 0; }
+  .content a { color: var(--accent2); }
+  .content code { background: #11141a; padding: 2px 6px; border-radius: 5px; font-size: 13px; color: #ffd; }
+  .content del { color: var(--muted); }
+  .codeblock {
+    background: #0a0c10; border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px; overflow-x: auto; font-size: 13px; color: #cfe;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  /* 表 */
+  .table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--line); border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
+  thead th { background: var(--panel2); text-align: left; padding: 10px 12px; color: var(--accent); font-size: 13px; white-space: nowrap; }
+  tbody td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* セクションの箱 */
+  .section {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 16px; padding: 6px 20px 18px; margin-top: 18px;
+  }
+
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
+  .foot .pill { display:inline-block; background: var(--panel2); border:1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 2px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <div class="kicker">幹部メンバー共有・関係者限定</div>
+      <h1>🎸 楽器を楽しむ日 2026 ダッシュボード</h1>
+      <div class="sub">日々の進捗・今やるべきこと・本番までのカウントダウンをここで共有します</div>
+    </div>
+
+    <div class="countdown">
+      
+        <div class="cd-card cd-future">
+          <div class="cd-icon">🎸</div>
+          <div class="cd-label">本番</div>
+          <div class="cd-num">42<span class="cd-unit">日</span></div>
+          <div class="cd-date">2026/08/01</div>
+          <div class="cd-note">Niterra市民会館 フォレストホール（8/1・2）</div>
+        </div>
+
+        <div class="cd-card cd-today">
+          <div class="cd-icon">⚠️</div>
+          <div class="cd-label">早割締切</div>
+          <div class="cd-num">本日<span class="cd-unit"></span></div>
+          <div class="cd-date">2026/06/20</div>
+          <div class="cd-note">協賛の早割</div>
+        </div>
+    </div>
+
+    <div class="section content">
+      <h2>🚦 いま一番大事なこと（＝ボールは誰が持っているか）</h2>
+<blockquote>ここが揃っていれば「バラバラに動く」事故は防げます。</blockquote>
+<div class="table-wrap"><table>
+<thead><tr><th>誰が</th><th>何を</th><th>状態</th><th>いつまで</th></tr></thead>
+<tbody>
+<tr><td><strong>ひでお</strong></td><td>中善楽器さんへ <strong>ブラスジャンボリーの扱い</strong>を確認</td><td>⏳回答待ち</td><td>早めに</td></tr>
+<tr><td><strong>ひでお</strong></td><td>特別協賛 応援版の <strong>写真差替 → PDF化</strong></td><td>🟡作業中</td><td>早割前</td></tr>
+<tr><td><strong>ひでお</strong></td><td>主要メーカー（ローランド/布袋関連/ディバイザー等）へ協賛打診</td><td>🔜着手</td><td>早割前</td></tr>
+<tr><td><strong>凛太朗</strong></td><td>Webアプリ <strong>LINE Login 本番チャネル登録</strong></td><td>🔵開発中</td><td>7月公開前</td></tr>
+<tr><td><strong>凛太朗</strong></td><td>スタンプラリー用 <strong>イラスト発注（nano banana）</strong></td><td>🔜着手</td><td>7月公開前</td></tr>
+<tr><td><strong>全体</strong></td><td>8月本番の <strong>運営体制・人員・予算</strong>の確定</td><td>❓未着手</td><td>7月</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📊 成果物ステータス</h2>
+<p>凡例： ✅確定・配布可 ／ 🟢ドラフト完成 ／ 🟡作業中・レビュー前 ／ 🔵開発中 ／ ⏳確認待ち</p>
+<h3>協賛まわり（企画書・申込書）</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>成果物</th><th>状態</th><th>担当</th><th>次アクション</th></tr></thead>
+<tbody>
+<tr><td>企画書 hideo v1（6カテゴリ別）</td><td>✅</td><td>ひでお</td><td>配布開始</td></tr>
+<tr><td>一般メーカー（ippan）分割版＋申込書</td><td>✅</td><td>ひでお</td><td>配布開始</td></tr>
+<tr><td>卸商（chubu）／商組合（aichi）分割版</td><td>✅</td><td>ひでお</td><td>配布開始</td></tr>
+<tr><td>特別協賛（tokubetsu）分割版</td><td>✅</td><td>ひでお</td><td>配布開始</td></tr>
+<tr><td><strong>特別協賛 応援版（手紙v3・別ライン）</strong></td><td>🟡</td><td>ひでお</td><td>写真差替→review→PDF</td></tr>
+<tr><td>学校向け（企画書＋別紙①②）</td><td>✅</td><td>ひでお</td><td>3校へ送付</td></tr>
+<tr><td>製造（seizo）分割版</td><td>🟡</td><td>ひでお</td><td><strong>配布前にフォント再ビルド要</strong></td></tr>
+<tr><td>料金サマリー</td><td>✅</td><td>ひでお</td><td>—</td></tr>
+</tbody></table></div>
+<h3>チラシ・募集</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>成果物</th><th>状態</th><th>担当</th><th>次アクション</th></tr></thead>
+<tbody>
+<tr><td>個人向け寄付チラシ（5千/1万円）</td><td>🟢</td><td>ひでお</td><td>会合で配布判断</td></tr>
+<tr><td>高校軽音バンド募集チラシ（QR/URL確定）</td><td>✅</td><td>ひでお</td><td>配布・拡散（<strong>2026新レギュ反映済</strong>: 1校最大4バンド/両日各2/8-1=1曲・8-2=2曲/先着締切。QRは gakkifes.com/keion に統一）</td></tr>
+<tr><td>高校軽音 募集特設ページ（gakkifes.com/keion）</td><td>✅</td><td>凛太朗</td><td><strong>本番公開済</strong>。申込用紙PDF DL＋オンラインフォーム＋メニュー導線</td></tr>
+<tr><td>高校軽音ステージ タイムテーブル試算</td><td>🟡</td><td>ひでお</td><td><strong>8/2=2曲前提で再試算要</strong>＋ブラスJ確認後に確定</td></tr>
+</tbody></table></div>
+<h3>Web・当日</h3>
+<div class="table-wrap"><table>
+<thead><tr><th>成果物</th><th>状態</th><th>担当</th><th>次アクション</th></tr></thead>
+<tbody>
+<tr><td>Webアプリ（HP/スタンプラリー/ダッシュボード）</td><td>🔵</td><td>凛太朗</td><td>LINE本番登録・イラスト発注</td></tr>
+<tr><td>本番ドメイン gakkifes.com</td><td>✅</td><td>凛太朗</td><td>公開準備</td></tr>
+<tr><td>HPトップ 6/11更新（<strong>本番反映済</strong>）</td><td>✅</td><td>凛太朗</td><td>未確定セクション（タイムテーブル/配置図/ブース紹介/景品）は確定まで非表示。お知らせ＝「HPリニューアル」1件。トップに<strong>高校生バンド募集CTA</strong>追加。keionに<strong>ホームボタン</strong>追加</td></tr>
+<tr><td>HP <strong>応援・協賛セクション</strong>（gakkifes.com トップ）</td><td>✅</td><td>凛太朗</td><td><strong>本番公開済</strong>。個人寄付チラシ準拠（5千/1万円・コツコツ/しっかり応援）を主役、ゴールド/プラチナ特別協賛は控えめに案内。申込導線＝事務局TEL/Mail。<strong>寄付フォームURL待ち</strong>／<strong>協賛確定でロゴ掲出（要ロゴ画像）</strong></td></tr>
+<tr><td>1DaySpecial吹奏楽団 公募</td><td>🔜</td><td>—</td><td>7月公募</td></tr>
+<tr><td>当日運営体制・学生スタッフ</td><td>❓</td><td>ひでお</td><td>人数・予算確定</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📌 直近の決定・確認待ち（詳細は LOG.md）</h2>
+<ul><li>✅ <strong>HPトップ更新・本番反映</strong>（2026-06-11） — 未確定セクションを非表示／お知らせ刷新／高校生バンド募集CTA／keionホームボタン／<strong>個人寄付チラシ準拠の応援・協賛セクション</strong>を公開。⏳ 残：寄付オンラインフォームURL・協賛確定時のロゴ画像。</li><li>⏳ <strong>ブラスジャンボリーの扱い</strong> — ひでおさんが中善楽器さんに確認中。回答が来たらタイムテーブルと当日進行に反映。（2026-06-06 打合せ）</li></ul>
+<hr>
+<h2>🔗 もっと詳しく</h2>
+<ul><li>📜 打合せ・決定の全記録 → <a href="LOG.md" target="_blank" rel="noopener">LOG.md</a></li><li>🗓 締切・マイルストーン → <a href="SCHEDULE.md" target="_blank" rel="noopener">SCHEDULE.md</a></li><li>✅ 担当別タスク → <a href="ACTIONS.md" target="_blank" rel="noopener">ACTIONS.md</a></li><li>📈 制作の歩み（年表）→ <a href="PROGRESS.md" target="_blank" rel="noopener">PROGRESS.md</a></li><li>💰 協賛料金 → <a href="PRICING.md" target="_blank" rel="noopener">PRICING.md</a></li></ul>
+<hr>
+<h2>📱 LINEにそのまま貼る用（コピペ）</h2>
+<pre class='codeblock'>【楽器を楽しむ日2026・進捗 6/7時点】
+本番まで残り55日 / 早割締切6/20まで残り13日
+
+◆ いま動いていること
+・ひでお：中善楽器さんにブラスジャンボリー確認中（回答待ち）
+・ひでお：特別協賛 応援版の写真差替→PDF化
+・ひでお：主要メーカーへ協賛打診（早割前に）
+・凛太朗：Webアプリ LINE本番登録・イラスト発注
+
+◆ お願い・相談したいこと
+・8月本番の運営体制／人員／予算の確定（7月までに）
+
+詳細は共有フォルダ／GitHubのSTATUS.mdへ。</pre>
+<hr>
+<h2>✅ 担当別タスク（ACTIONS.md より）</h2>
+<h1>アクションアイテム</h1>
+<h2>573rin（近藤英生）担当</h2>
+<ul><li><span class="chk todo">☐</span> 企画書の骨子作成・共有（4月上旬目安）← v3まで進行中</li><li><span class="chk todo">☐</span> 協賛・出店料金の最終案整理 → 4/21役員会</li><li><span class="chk todo">☐</span> 主要メーカー（ローランド、布袋関連、ディバイザー等）との交渉（4月中旬目安）</li><li><span class="chk todo">☐</span> 地元メディア・商工会議所・銀行へのスポンサー打診（4月上旬目安）</li><li><span class="chk todo">☐</span> 学生スタッフ・当日運営の人数と予算確定</li></ul>
+<h2>Rintaro担当</h2>
+<ul><li><span class="chk todo">☐</span> Webアプリの企画・プロトタイプ・要件定義</li><li><span class="chk todo">☐</span> 受付導線と登録フロー設計</li><li><span class="chk todo">☐</span> 抽選・当選管理画面の設計（不正対策含む）</li><li><span class="chk todo">☐</span> イベント用デジタル機能の技術検証</li></ul>
+<h2>確認待ち（→ 詳細は docs/LOG.md）</h2>
+<ul><li><span class="chk todo">☐</span> <strong>ブラスジャンボリーの扱い</strong> — 英生さん が 中善楽器さん に確認中（2026-06-06〜）。回答が来たら実施方針を確定しタイムテーブルに反映。</li></ul>
+<h2>その他メモ</h2>
+<ul><li>サブステージ内容: セミナー、出展ブース担当者の活動紹介、アンサンブルフレンズ（吹奏楽×バンド/近藤凛太朗が活動）の演奏</li><li>【課題】サブステージに椅子を置いても座ってもらえなかった（2025年の反省）→ 人が自然と集まる仕掛けを要検討</li><li>1DaySpecial吹奏楽団は2026年も継続実施</li></ul>
+    </div>
+
+    <div class="foot">
+      <div>
+        <span class="pill">最終ビルド: 2026/06/20 時点</span>
+        <span class="pill">情報源: docs/STATUS.md ・ docs/ACTIONS.md</span>
+      </div>
+      <p style="margin-top:10px;">このページは <code>docs/STATUS.md</code> を編集して再ビルドすると更新されます。</p>
+    </div>
+  </div>
+</body>
+</html>
