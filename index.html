@@ -58,6 +58,29 @@
   .cd-date { color: var(--muted); font-size: 13px; }
   .cd-note { color: var(--muted); font-size: 11px; margin-top: 6px; }
 
+  /* 最上部サマリー（これどうなった？ / いま動いていること） */
+  .summary { margin: 22px 0 6px; display: grid; gap: 14px; }
+  .alert { border-radius: 16px; padding: 16px 18px; border: 1px solid var(--line); }
+  .alert-stalled { background: rgba(255,107,107,.08); border-color: rgba(255,107,107,.45); }
+  .alert-active { background: rgba(56,211,159,.07); border-color: rgba(56,211,159,.40); }
+  .alert-head { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+  .alert-stalled .alert-head { color: #ff8b8b; }
+  .alert-active .alert-head { color: var(--green); }
+  .alert-sub { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 10px; }
+  .sum-list { list-style: none; margin: 0; padding: 0; }
+  .sum-list li { padding: 10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+  .sum-list li:first-child { border-top: none; }
+  .sum-what { font-weight: 700; font-size: 15px; }
+  .sum-meta { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .chip.who { color: var(--text); }
+  .chip.state { color: var(--text); }
+  .chip.due { color: var(--accent); border-color: rgba(255,176,46,.35); }
+  .chip.age.fresh { color: var(--muted); }
+  .chip.age.warn { color: #ffd93d; border-color: rgba(255,217,61,.5); }
+  .chip.age.old { color: #fff; background: #c0392b; border-color: #e74c3c; font-weight: 700; }
+  .sum-next { font-size: 12.5px; color: var(--accent2); flex-basis: 100%; }
+
   /* 本文（Markdownレンダリング部） */
   .content h2 {
     font-size: 19px; margin: 34px 0 12px; padding-bottom: 8px;
@@ -129,18 +152,29 @@
         </div>
     </div>
 
+    <div class="summary">
+        <div class="alert alert-stalled">
+          <div class="alert-head">⚠️ これどうなった？<span class="alert-sub">確認待ち・未着手で止まりがちな項目（古い順）</span></div>
+          <ul class="sum-list"><li><div class="sum-what">中善楽器さんへ <strong>ブラスジャンボリーの扱い</strong>を確認</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">⏳回答待ち</span><span class="chip due">期限: 早めに</span><span class="chip age warn">12日経過</span></div></li><li><div class="sum-what">主要メーカー（ローランド/布袋関連/ディバイザー等）へ協賛打診</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🔜着手</span><span class="chip due">期限: 早割前</span><span class="chip age warn">12日経過</span></div></li><li><div class="sum-what">8月本番の <strong>運営体制・人員・予算</strong>の確定</div><div class="sum-meta"><span class="chip who">全体</span><span class="chip state">❓未着手</span><span class="chip due">期限: 7月</span><span class="chip age warn">12日経過</span></div></li><li><div class="sum-what">スタンプラリー用 <strong>イラスト発注（nano banana）</strong></div><div class="sum-meta"><span class="chip who">凛太朗</span><span class="chip state">🔜着手</span><span class="chip due">期限: 7月公開前</span><span class="chip age warn">9日経過</span></div></li><li><div class="sum-what">1DaySpecial吹奏楽団 公募</div><div class="sum-meta"><span class="chip who">—</span><span class="chip state">🔜</span><span class="sum-next">→ 7月公募</span></div></li><li><div class="sum-what">当日運営体制・学生スタッフ</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">❓</span><span class="sum-next">→ 人数・予算確定</span></div></li></ul>
+        </div>
+
+        <div class="alert alert-active">
+          <div class="alert-head">🔥 いま動いていること<span class="alert-sub">作業中・開発中の項目</span></div>
+          <ul class="sum-list"><li><div class="sum-what">特別協賛 応援版の <strong>写真差替 → PDF化</strong></div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🟡作業中</span><span class="chip due">期限: 早割前</span><span class="chip age warn">12日経過</span></div></li><li><div class="sum-what">Webアプリ <strong>LINE Login 本番チャネル登録</strong></div><div class="sum-meta"><span class="chip who">凛太朗</span><span class="chip state">🔵開発中</span><span class="chip due">期限: 7月公開前</span><span class="chip age warn">9日経過</span></div></li><li><div class="sum-what"><strong>特別協賛 応援版（手紙v3・別ライン）</strong></div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🟡</span><span class="sum-next">→ 写真差替→review→PDF</span></div></li><li><div class="sum-what">製造（seizo）分割版</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🟡</span><span class="sum-next">→ 配布前にフォント再ビルド要</span></div></li><li><div class="sum-what">個人向け寄付チラシ（5千/1万円）</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🟢</span><span class="sum-next">→ 会合で配布判断</span></div></li><li><div class="sum-what">高校軽音ステージ タイムテーブル試算</div><div class="sum-meta"><span class="chip who">ひでお</span><span class="chip state">🟡</span><span class="sum-next">→ 8/2=2曲前提で再試算要＋ブラスJ確認後に確定</span></div></li><li><div class="sum-what">Webアプリ（HP/スタンプラリー/ダッシュボード）</div><div class="sum-meta"><span class="chip who">凛太朗</span><span class="chip state">🔵</span><span class="sum-next">→ LINE本番登録・イラスト発注</span></div></li></ul>
+        </div></div>
+
     <div class="section content">
       <h2>🚦 いま一番大事なこと（＝ボールは誰が持っているか）</h2>
 <blockquote>ここが揃っていれば「バラバラに動く」事故は防げます。</blockquote>
 <div class="table-wrap"><table>
-<thead><tr><th>誰が</th><th>何を</th><th>状態</th><th>いつまで</th></tr></thead>
+<thead><tr><th>誰が</th><th>何を</th><th>状態</th><th>いつまで</th><th>更新</th></tr></thead>
 <tbody>
-<tr><td><strong>ひでお</strong></td><td>中善楽器さんへ <strong>ブラスジャンボリーの扱い</strong>を確認</td><td>⏳回答待ち</td><td>早めに</td></tr>
-<tr><td><strong>ひでお</strong></td><td>特別協賛 応援版の <strong>写真差替 → PDF化</strong></td><td>🟡作業中</td><td>早割前</td></tr>
-<tr><td><strong>ひでお</strong></td><td>主要メーカー（ローランド/布袋関連/ディバイザー等）へ協賛打診</td><td>🔜着手</td><td>早割前</td></tr>
-<tr><td><strong>凛太朗</strong></td><td>Webアプリ <strong>LINE Login 本番チャネル登録</strong></td><td>🔵開発中</td><td>7月公開前</td></tr>
-<tr><td><strong>凛太朗</strong></td><td>スタンプラリー用 <strong>イラスト発注（nano banana）</strong></td><td>🔜着手</td><td>7月公開前</td></tr>
-<tr><td><strong>全体</strong></td><td>8月本番の <strong>運営体制・人員・予算</strong>の確定</td><td>❓未着手</td><td>7月</td></tr>
+<tr><td><strong>ひでお</strong></td><td>中善楽器さんへ <strong>ブラスジャンボリーの扱い</strong>を確認</td><td>⏳回答待ち</td><td>早めに</td><td>（更新: 6/8）</td></tr>
+<tr><td><strong>ひでお</strong></td><td>特別協賛 応援版の <strong>写真差替 → PDF化</strong></td><td>🟡作業中</td><td>早割前</td><td>（更新: 6/8）</td></tr>
+<tr><td><strong>ひでお</strong></td><td>主要メーカー（ローランド/布袋関連/ディバイザー等）へ協賛打診</td><td>🔜着手</td><td>早割前</td><td>（更新: 6/8）</td></tr>
+<tr><td><strong>凛太朗</strong></td><td>Webアプリ <strong>LINE Login 本番チャネル登録</strong></td><td>🔵開発中</td><td>7月公開前</td><td>（更新: 6/11）</td></tr>
+<tr><td><strong>凛太朗</strong></td><td>スタンプラリー用 <strong>イラスト発注（nano banana）</strong></td><td>🔜着手</td><td>7月公開前</td><td>（更新: 6/11）</td></tr>
+<tr><td><strong>全体</strong></td><td>8月本番の <strong>運営体制・人員・予算</strong>の確定</td><td>❓未着手</td><td>7月</td><td>（更新: 6/8）</td></tr>
 </tbody></table></div>
 <hr>
 <h2>📊 成果物ステータス</h2>
@@ -180,7 +214,7 @@
 </tbody></table></div>
 <hr>
 <h2>📌 直近の決定・確認待ち（詳細は LOG.md）</h2>
-<ul><li>✅ <strong>幹部共有ダッシュボードを公開</strong>（2026-06-20） — このSTATUS.mdを情報源に、進捗・タスク・本番までの残り日数を1ページで共有するページを公開。<strong>このSTATUS.mdを編集してpushすれば自動で更新される</strong>。閲覧URL → https://rintaro216.github.io/gakki-staff-dashboard/</li><li>✅ <strong>HPトップ更新・本番反映</strong>（2026-06-11） — 未確定セクションを非表示／お知らせ刷新／高校生バンド募集CTA／keionホームボタン／<strong>個人寄付チラシ準拠の応援・協賛セクション</strong>を公開。⏳ 残：寄付オンラインフォームURL・協賛確定時のロゴ画像。</li><li>⏳ <strong>ブラスジャンボリーの扱い</strong> — ひでおさんが中善楽器さんに確認中。回答が来たらタイムテーブルと当日進行に反映。（2026-06-06 打合せ）</li></ul>
+<ul><li>✅ <strong>幹部共有ダッシュボードを公開</strong>（2026-06-20） — このSTATUS.mdを情報源に、進捗・タスク・本番までの残り日数を1ページで共有するページを公開。<strong>このSTATUS.mdを編集してpushすれば自動で更新される</strong>。閲覧URL → https://rintaro216.github.io/gakki-staff-dashboard/</li><li>✅ <strong>ダッシュボードに「これどうなった？」滞留検知を追加</strong>（2026-06-20） — 確認待ち・未着手の項目を最上部に古い順で自動表示。各項目に <code>（更新: M/D）</code> を書くと「○日経過」が出る（7日以上で黄・14日以上で赤）。更新したら日付も直すと経過がリセットされる。</li><li>✅ <strong>HPトップ更新・本番反映</strong>（2026-06-11） — 未確定セクションを非表示／お知らせ刷新／高校生バンド募集CTA／keionホームボタン／<strong>個人寄付チラシ準拠の応援・協賛セクション</strong>を公開。⏳ 残：寄付オンラインフォームURL・協賛確定時のロゴ画像。</li><li>⏳ <strong>ブラスジャンボリーの扱い</strong> — ひでおさんが中善楽器さんに確認中。回答が来たらタイムテーブルと当日進行に反映。（2026-06-06 打合せ）</li></ul>
 <hr>
 <h2>🔗 もっと詳しく</h2>
 <ul><li>📜 打合せ・決定の全記録 → <a href="LOG.md" target="_blank" rel="noopener">LOG.md</a></li><li>🗓 締切・マイルストーン → <a href="SCHEDULE.md" target="_blank" rel="noopener">SCHEDULE.md</a></li><li>✅ 担当別タスク → <a href="ACTIONS.md" target="_blank" rel="noopener">ACTIONS.md</a></li><li>📈 制作の歩み（年表）→ <a href="PROGRESS.md" target="_blank" rel="noopener">PROGRESS.md</a></li><li>💰 協賛料金 → <a href="PRICING.md" target="_blank" rel="noopener">PRICING.md</a></li></ul>
