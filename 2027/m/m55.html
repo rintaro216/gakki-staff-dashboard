@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>会場内看板9点のPDF完成 ｜ 楽器を楽しむ日2027</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #181b22;
+    --panel2: #1f232c;
+    --line: #2b303b;
+    --text: #e8eaf0;
+    --muted: #9aa3b2;
+    --accent: #ffb02e;
+    --accent2: #4cc2ff;
+    --green: #38d39f;
+    --red: #ff6b6b;
+    --yellow: #ffd93d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 24px 18px 80px; }
+
+  /* ヘッダー */
+  .head { text-align: center; padding: 12px 0 8px; }
+  .head .kicker { color: var(--accent); letter-spacing: .15em; font-size: 13px; font-weight: 700; }
+  .head h1 { font-size: clamp(22px, 5vw, 34px); margin: 6px 0 4px; }
+  .head .sub { color: var(--muted); font-size: 13px; }
+
+  /* カウントダウン */
+  .countdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 22px 0 6px; }
+  .cd-card {
+    background: linear-gradient(160deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cd-card.cd-future { border-color: #3a3f4d; }
+  .cd-card.cd-today { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(255,176,46,.25); }
+  .cd-card.cd-past { opacity: .55; }
+  .cd-icon { font-size: 26px; }
+  .cd-label { color: var(--muted); font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .cd-num { font-size: 52px; font-weight: 800; line-height: 1; margin: 6px 0; color: var(--accent); }
+  .cd-card.cd-future .cd-num { color: var(--accent2); }
+  .cd-unit { font-size: 18px; font-weight: 700; margin-left: 4px; color: var(--text); }
+  .cd-date { color: var(--muted); font-size: 13px; }
+  .cd-note { color: var(--muted); font-size: 11px; margin-top: 6px; }
+
+  /* 最上部サマリー（これどうなった？ / いま動いていること） */
+  .summary { margin: 22px 0 6px; display: grid; gap: 14px; }
+  .alert { border-radius: 16px; padding: 16px 18px; border: 1px solid var(--line); }
+  .alert-stalled { background: rgba(255,107,107,.08); border-color: rgba(255,107,107,.45); }
+  .alert-active { background: rgba(56,211,159,.07); border-color: rgba(56,211,159,.40); }
+  .alert-head { font-size: 17px; font-weight: 800; margin-bottom: 10px; }
+  .alert-stalled .alert-head { color: #ff8b8b; }
+  .alert-active .alert-head { color: var(--green); }
+  .alert-sub { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 10px; }
+  .sum-list { list-style: none; margin: 0; padding: 0; }
+  .sum-list li { padding: 10px 0; border-top: 1px solid rgba(255,255,255,.06); }
+  .sum-list li:first-child { border-top: none; }
+  .sum-what { font-weight: 700; font-size: 15px; }
+  .sum-meta { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+  .chip { font-size: 12px; padding: 2px 9px; border-radius: 999px; background: var(--panel2); border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .chip.who { color: var(--text); }
+  .chip.state { color: var(--text); }
+  .chip.due { color: var(--accent); border-color: rgba(255,176,46,.35); }
+  .chip.age.fresh { color: var(--muted); }
+  .chip.age.warn { color: #ffd93d; border-color: rgba(255,217,61,.5); }
+  .chip.age.old { color: #fff; background: #c0392b; border-color: #e74c3c; font-weight: 700; }
+  .sum-next { font-size: 12.5px; color: var(--accent2); flex-basis: 100%; }
+
+  /* 本文（Markdownレンダリング部） */
+  .content h2 {
+    font-size: 19px; margin: 34px 0 12px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--line);
+  }
+  .content h3 { font-size: 15px; color: var(--accent2); margin: 20px 0 8px; }
+  .content p { margin: 8px 0; }
+  .content blockquote {
+    border-left: 3px solid var(--accent); background: var(--panel);
+    margin: 10px 0; padding: 10px 14px; color: var(--muted); border-radius: 0 8px 8px 0; font-size: 14px;
+  }
+  .content ul { padding-left: 4px; list-style: none; margin: 8px 0; }
+  .content li { padding: 4px 0 4px 0; border-bottom: 1px dashed var(--line); }
+  .content li:last-child { border-bottom: none; }
+  .chk { display: inline-block; width: 1.4em; }
+  .chk.done { color: var(--green); }
+  .chk.todo { color: var(--yellow); }
+  .content hr { border: none; border-top: 1px solid var(--line); margin: 24px 0; }
+  .content a { color: var(--accent2); }
+  .content code { background: #11141a; padding: 2px 6px; border-radius: 5px; font-size: 13px; color: #ffd; }
+  .content del { color: var(--muted); }
+  .codeblock {
+    background: #0a0c10; border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px; overflow-x: auto; font-size: 13px; color: #cfe;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  /* 表 */
+  .table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--line); border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 480px; }
+  thead th { background: var(--panel2); text-align: left; padding: 10px 12px; color: var(--accent); font-size: 13px; white-space: nowrap; }
+  tbody td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+  tbody tr:hover { background: rgba(255,255,255,.02); }
+
+  /* セクションの箱 */
+  .section {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 16px; padding: 6px 20px 18px; margin-top: 18px;
+  }
+
+  .foot { text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
+  .foot .pill { display:inline-block; background: var(--panel2); border:1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 2px; }
+  .foot .crosslink { margin-top: 8px; }
+  .foot .crosslink a { color: var(--accent2); }
+
+  /* ガントチャート風の年間ビュー */
+  .gantt-marker { color: var(--accent); font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+  .gantt-legend { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 8px; font-size: 12px; }
+  .gantt-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  .gantt-table { border-collapse: collapse; font-size: 13px; min-width: 900px; width: 100%; }
+  .gantt-table th, .gantt-table td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; }
+  .gantt-corner { background: var(--panel2); }
+  .gantt-col-head { background: var(--panel2); color: var(--accent2); text-align: center; white-space: nowrap; font-size: 11.5px; position: sticky; top: 0; }
+  .gantt-col-head.gantt-current { background: rgba(255,176,46,.22); color: var(--accent); }
+  .gantt-row-head { background: var(--panel2); color: var(--text); text-align: left; white-space: nowrap; font-size: 11.5px; }
+  .gantt-cell { min-width: 90px; }
+  .gantt-cell.gantt-current { background: rgba(255,176,46,.08); }
+  .gantt-chip {
+    display: block; font-size: 10.5px; padding: 2px 6px; border-radius: 999px;
+    margin: 3px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 140px; cursor: default; text-decoration: none;
+  }
+  .gantt-legend .gantt-chip { display: inline-block; margin: 0; }
+  .gantt-chip.gantt-done { background: rgba(56,211,159,.18); color: var(--green); border: 1px solid rgba(56,211,159,.45); }
+  .gantt-chip.gantt-active { background: rgba(255,217,61,.18); color: var(--yellow); border: 1px solid rgba(255,217,61,.45); }
+  .gantt-chip.gantt-todo { background: var(--panel2); color: var(--muted); border: 1px solid var(--line); }
+  .gantt-badge {
+    display: inline-block; background: rgba(56,211,159,.25); color: var(--green);
+    border-radius: 999px; font-size: 10px; padding: 1px 5px; margin-right: 4px; font-weight: 700;
+  }
+  .gantt-link-icon { font-size: 9px; margin-left: 3px; opacity: .8; }
+
+  /* マイルストーン詳細ページ */
+  .m-back { display: inline-block; color: var(--accent2); font-size: 13px; text-decoration: none; margin-bottom: 10px; }
+  .m-back:hover { text-decoration: underline; }
+  .m-badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 6px 0 2px; }
+  .m-field { display: inline-block; background: var(--panel2); border: 1px solid var(--line); color: var(--accent2); border-radius: 999px; font-size: 12px; padding: 3px 12px; font-weight: 700; }
+  .m-when { color: var(--muted); font-size: 13px; }
+  .m-state { display: inline-block; border-radius: 999px; font-size: 12px; padding: 3px 12px; font-weight: 700; }
+  .m-state.done { background: rgba(56,211,159,.18); color: var(--green); border: 1px solid rgba(56,211,159,.45); }
+  .m-state.active { background: rgba(255,217,61,.18); color: var(--yellow); border: 1px solid rgba(255,217,61,.45); }
+  .m-state.todo { background: var(--panel2); color: var(--muted); border: 1px solid var(--line); }
+  .m-title { font-size: clamp(20px, 4.5vw, 28px); margin: 10px 0 20px; }
+
+  .m-section-label { font-size: 13px; font-weight: 800; color: var(--accent); letter-spacing: .05em; margin: 28px 0 12px; }
+
+  .m-deliverables { display: grid; gap: 12px; }
+  .m-card {
+    display: flex; align-items: center; gap: 14px;
+    background: linear-gradient(160deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+    text-decoration: none; color: var(--text);
+  }
+  .m-card:hover { border-color: var(--accent2); }
+  .m-card-icon { font-size: 26px; flex: none; }
+  .m-card-label { font-weight: 700; font-size: 15px; }
+  .m-card-action { color: var(--accent2); font-size: 12.5px; margin-top: 2px; }
+  .m-empty { color: var(--muted); font-size: 14px; padding: 14px 0; }
+
+  .m-timeline { position: relative; margin: 0; padding-left: 26px; border-left: 2px solid var(--line); display: grid; gap: 18px; }
+  .m-tl-item { position: relative; }
+  .m-tl-item::before {
+    content: ""; position: absolute; left: -32px; top: 4px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--panel); border: 2px solid var(--accent2);
+  }
+  .m-tl-when { font-size: 12px; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: .04em; }
+  .m-tl-badge {
+    display: inline-block; background: rgba(56,211,159,.25); color: var(--green);
+    border-radius: 999px; font-size: 11px; padding: 1px 8px; margin-right: 6px; font-weight: 700;
+  }
+  .m-tl-body { margin-top: 4px; font-size: 14.5px; }
+  .m-tl-item.m-tl-future .m-tl-when { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head" style="text-align:left; padding-top:20px;">
+      <a class="m-back" href="../">← 受付ページへ戻る</a>
+      <div class="m-badges">
+        <span class="m-field">印刷</span>
+        <span class="m-when">2027年7月（本番前月・去年今年ともラッシュ月）</span>
+        <span class="m-state todo">未着手</span>
+      </div>
+      <h1 class="m-title">会場内看板9点のPDF完成</h1>
+    </div>
+
+    <div class="section content">
+      <div class="m-section-label">📦 成果物</div>
+      <div class="m-deliverables">
+        <div class="m-empty">配布物・資料はまだありません</div>
+      </div>
+    </div>
+
+    <div class="section content">
+      <div class="m-section-label">🕘 経過</div>
+      <div class="m-timeline">
+        
+      <div class="m-tl-item">
+        <div class="m-tl-when">去年（2025）</div>
+        <div class="m-tl-body">❓</div>
+      </div>
+
+      <div class="m-tl-item">
+        <div class="m-tl-when">今年（2026）</div>
+        <div class="m-tl-body"><span class="m-tl-badge">7/26</span>7/26 9点とも完成</div>
+      </div>
+
+      <div class="m-tl-item m-tl-future">
+        <div class="m-tl-when">来年（2027）の目標</div>
+        <div class="m-tl-body">未設定（英生さんと決める）</div>
+      </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <p class="crosslink"><a href="../">← 受付ページへ戻る</a></p>
+    </div>
+  </div>
+</body>
+</html>
