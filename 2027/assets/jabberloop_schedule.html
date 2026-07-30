@@ -1,0 +1,143 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>JABBERLOOP さん 当日工程表 2026</title><style>@page { size: A4 portrait; margin: 8mm 8mm; }
+* { box-sizing: border-box; }
+body { font-family: "Meiryo","メイリオ",sans-serif; margin:0; color:#17232e;
+       font-size: 12.4px; line-height:1.25;
+       text-shadow: 0.2px 0 0 currentColor, -0.2px 0 0 currentColor; }
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+
+.hd { display:flex; align-items:center; gap:10px;
+      background:#12314b; color:#fff; padding:7px 12px; border-radius:5px 5px 0 0; }
+.hd .day { background:#ff8a1f; color:#fff; font-weight:bold; font-size:20px;
+           padding:2px 12px; border-radius:4px; white-space:nowrap; }
+.hd h1 { font-size:19px; margin:0; font-weight:bold; }
+.hd .ver { margin-left:auto; font-size:11px; opacity:.85; white-space:nowrap; }
+
+.summary { display:flex; gap:0; border:2px solid #12314b; border-top:none;
+           margin-bottom:6px; }
+.summary div { flex:1; padding:4px 10px; border-right:1px solid #c8d4de; }
+.summary div:last-child { border-right:none; }
+.summary .lb { font-size:10.5px; color:#5a6b7a; display:block; }
+.summary .vl { font-size:14.5px; font-weight:bold; color:#12314b; }
+.summary .vl small { font-size:11.5px; font-weight:normal; color:#333; }
+
+table { width:100%; border-collapse:collapse; }
+th { background:#e8eef4; color:#12314b; font-size:11.5px; padding:3px 6px;
+     border:1px solid #9fb2c2; text-align:left; }
+td { border:1px solid #b9c8d4; padding:1px 7px; vertical-align:top; }
+td.t { white-space:nowrap; font-weight:bold; font-size:12.8px; width:96px;
+       background:#f4f7fa; text-align:center;
+       font-variant-numeric: tabular-nums; }
+td.pl { width:150px; font-size:11.4px; color:#33475a; }
+td.at { width:262px; font-size:11.6px; }
+tr.hi td { background:#fff2e0; }
+tr.hi td.t { background:#ffe0bd; }
+tr.live td { background:#12314b; color:#fff; }
+tr.live td.t { background:#0c2436; color:#fff; }
+tr.live td.pl { color:#cfe0ee; }
+tr.dim td { background:#f7f9fb; color:#5f7183; }
+tr.todo td { background:#fff6f6; }
+b.o { color:#d2500f; }
+tr.live b.o { color:#ffc073; }
+.tag { display:inline-block; background:#d2500f; color:#fff; font-size:10px;
+       padding:0 5px; border-radius:3px; margin-right:4px; vertical-align:1px; }
+.tag.j { background:#0c5aa6; }
+.tag.b { background:#2c7a4b; }
+.tag.q { background:#b3241c; }
+
+.note { margin-top:6px; border:1.5px solid #12314b; border-radius:4px; }
+.note h2 { margin:0; font-size:12.5px; background:#12314b; color:#fff;
+           padding:3px 10px; }
+.note .in { padding:5px 10px; font-size:11.6px; }
+.note .in p { margin:0 0 3px; }
+.note .in p:last-child { margin-bottom:0; }
+.q h2 { background:#b3241c; }
+.q { border-color:#b3241c; }
+.q .in { display:flex; flex-wrap:wrap; }
+.q .in p { width:50%; padding-right:14px; font-size:13.2px; margin:0 0 11px;
+           line-height:1.4; }
+.note.mine { border-color:#2c7a4b; }
+.note.mine h2 { background:#2c7a4b; }
+.note.mine .in { display:flex; flex-wrap:wrap; }
+.note.mine .in p { width:50%; padding-right:14px; font-size:13.2px;
+                   margin:0 0 11px; line-height:1.4; }
+
+/* 行数が少ないページは行を高くして紙いっぱいに（余白を作らない） */
+.p1t td { padding:3px 7px; }
+.p2t td { padding:5px 7px; }
+
+/* ── 両日を1枚に収める版（.one） ── */
+.one { font-size:11.4px; }
+.one .hd { padding:3px 10px; border-radius:4px 4px 0 0; }
+.one .hd .day { font-size:15px; padding:1px 9px; }
+.one .hd h1 { font-size:15px; }
+.one .hd .ver { font-size:9.6px; }
+.one .summary { margin-bottom:3px; }
+.one .summary div { padding:1px 8px; }
+.one .summary .lb { font-size:9.2px; }
+.one .summary .vl { font-size:11.8px; }
+.one .summary .vl small { font-size:9.6px; }
+.one th { font-size:9.6px; padding:0 5px; }
+.one td { padding:0.5px 6px; font-size:10.8px; line-height:1.16; }
+.one td.t { font-size:11px; width:78px; }
+.one td.pl { width:112px; font-size:9.8px; }
+.one td.at { width:244px; font-size:9.9px; }
+.one .tag { font-size:8.8px; padding:0 4px; margin-right:3px; }
+.one .day2 { margin-top:5px; }
+
+/* ── 両日をA4縦1枚に収める版（.tate）＝横幅が狭いぶん文字は大きく ── */
+.tate { font-size:12.4px; }
+.tate .hd { padding:5px 10px; border-radius:4px 4px 0 0; }
+.tate .hd .day { font-size:17px; padding:1px 10px; }
+.tate .hd h1 { font-size:14.6px; }
+.tate .hd .ver { font-size:9.4px; }
+.tate .summary { margin-bottom:4px; }
+.tate .summary div { padding:3px 8px; }
+.tate .summary .lb { font-size:9.6px; }
+.tate .summary .vl { font-size:12.6px; }
+.tate .summary .vl small { font-size:10.2px; display:block; }
+.tate th { font-size:10.2px; padding:2px 5px; }
+.tate td { padding:2.3px 5px; font-size:11.8px; line-height:1.26; }
+.tate td.t { font-size:11.8px; width:74px; }
+.tate td.pl { width:86px; font-size:9.9px; }
+.tate td.at { width:178px; font-size:10.2px; }
+.tate .tag { font-size:9.2px; padding:0 4px; margin-right:3px; }
+.tate .day2 { margin-top:9px; }
+.tate .note .in p { font-size:11.4px; }
+.tate .q .in p, .tate .note.mine .in p { width:100%; font-size:12px; }
+
+table.memo td { padding:4px 8px; }
+table.memo td.k { width:300px; background:#f4f7fa; font-weight:bold;
+                  font-size:12.4px; color:#12314b; }
+
+/* ══ 画面で見るとき（HTML共有用）。印刷＝A4縦1枚はそのまま ══ */
+@media screen {
+  body { background:#e7edf3; padding:14px 10px 26px; }
+  .page { background:#fff; max-width:860px; margin:0 auto 18px;
+          padding:14px 16px 18px; border-radius:8px;
+          box-shadow:0 2px 14px rgba(18,49,75,.16); }
+  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .tw table { min-width:660px; }
+  .tate td { padding:5px 7px; font-size:13.2px; }
+  .tate td.t { font-size:13.2px; }
+  .tate td.pl { font-size:11.4px; }
+  .tate td.at { font-size:11.6px; }
+  .tate th { font-size:11.4px; }
+  .tate .hd h1 { font-size:16.5px; }
+  .tate .summary .vl { font-size:14px; }
+  .tate .day2 { margin-top:20px; }
+}
+@media screen and (prefers-color-scheme: dark) {
+  body { background:#141a20; }
+  .page { box-shadow:0 2px 16px rgba(0,0,0,.5); }
+}
+:root[data-theme="dark"] body { background:#141a20; }
+:root[data-theme="light"] body { background:#e7edf3; }
+@media print {
+  body { background:#fff; padding:0; }
+  .page { box-shadow:none; margin:0; padding:0; max-width:none;
+          border-radius:0; }
+}
+</style></head><body><div class='page'><div class="tate"><div class="hd"><span class="day">8/1<br>土</span>
+<h1>1日目・Niterra日本特殊陶業市民会館 フォレストホール</h1><span class="ver">JABBERLOOP さん 工程表／2026-07-30 版</span></div><div class="summary"><div><span class="lb">この日の出番</span><span class="vl"><span class="vl">15:45–16:15　＋　16:35–17:20</span><small>　吹奏楽団と共演（4曲）／ライブ45分</small></span></div><div><span class="lb">控室</span><span class="vl"><span class="vl">市民会館 控室 1</span></span></div><div><span class="lb">宿泊</span><span class="vl"><span class="vl">金山ホテル</span><small>　7/31・8/1の2泊・手配済み</small></span></div></div><div class="tw"><table><tr><th>時刻</th><th>内容</th><th>場所</th><th>担当・メモ</th></tr><tr class="dim"><td class="t">前日<br>7/31 金</td><td><span class="tag j">JL</span><b>各自で金山ホテルへ直接チェックイン</b>（ご予約・お支払いは済んでいます）</td><td class="pl">金山ホテル</td><td class="at"></td></tr><tr class="dim"><td class="t">8:00</td><td>ステージスタッフ 集合・舞台仕込み</td><td class="pl">フォレストホール</td><td class="at">音響＝Wフラット 宮川さん／舞台進行＝運営ステージチーム</td></tr><tr class="dim"><td class="t">8:30</td><td>出展社・学生 集合／朝礼 → 搬入・ブース設営 開始</td><td class="pl">2階ホワイエ</td><td class="at">ひでお＝朝礼</td></tr><tr><td class="t"></td><td><span class="tag j">JL</span><b>JABBERLOOP さん 会場入り</b></td><td class="pl">1階 → 控室1</td><td class="at"></td></tr><tr class="hi"><td class="t">9:30 〜</td><td><span class="tag b">楽団</span><b class='o'>1DaySpecial吹奏楽団 受付</b>（参加者45名）</td><td class="pl">地下 第1リハーサル室</td><td class="at">こなみ＋学生＝受付・楽器の置き場のご案内</td></tr><tr class="hi"><td class="t">10:00 過ぎ 〜</td><td><span class="tag b">楽団</span><span class="tag j">JL</span><b class='o'>説明会</b>（メンバー紹介・演奏する4曲・ステージの並び順）</td><td class="pl">地下 第1リハーサル室</td><td class="at">説明会アテンド＝細川会長／舞台進行の2名からステージ配置の確認<br>ご説明は JABBERLOOP さんにお願いします</td></tr><tr class="live"><td class="t">11:00 〜</td><td><span class="tag j">JL</span><b class='o'>JABBERLOOP リハーサル</b>（ホールで単体・〜11:30ごろ／楽団の希望者が客席で見学）</td><td class="pl">メインステージ</td><td class="at">舞台進行＝運営ステージチーム／音響＝宮川さん／学生＝見学者の誘導</td></tr><tr class="dim"><td class="t">11:30 / 11:45</td><td>ホワイエ・展示 開場（11:30）→ ホール 開場（11:45）</td><td class="pl">2階ホワイエ・ホール</td><td class="at">高校軽音のセッティングへ切り替え</td></tr><tr><td class="t">11:30–12:30</td><td><span class="tag j">JL</span><b>昼食・休憩</b></td><td class="pl">控室1</td><td class="at">お弁当の用意あり</td></tr><tr class="hi"><td class="t">12:30–15:00</td><td><span class="tag b">楽団</span><span class="tag j">JL</span><b class='o'>練習会（合奏練習）</b>　誠さんが指導（途中休憩あり）</td><td class="pl">地下 第1リハーサル室</td><td class="at">細川会長＝サポート</td></tr><tr class="dim"><td class="t">15:00</td><td><span class="tag b">楽団</span>練習会 終了（参加者はステージ袖へ移動）</td><td class="pl">リハ室 → ステージ袖</td><td class="at">スタッフ＝リハーサルで使用した楽器をステージへ／参加者の荷物を出す</td></tr><tr class="dim"><td class="t">15:22–15:45</td><td>メインは 転換・抽選会① ／ ステージに楽団本番のセッティング</td><td class="pl">メインステージ</td><td class="at">石塚＝抽選会①のMC</td></tr><tr class="live"><td class="t">15:45–16:15</td><td><span class="tag b">楽団</span><span class="tag j">JL</span><b class='o'>1DaySpecial吹奏楽団 本番（4曲・30分）</b><br>宝島／EMOZIONE／ルパン三世のテーマ／シロクマ</td><td class="pl">メインステージ</td><td class="at">石塚＝MC</td></tr><tr><td class="t">16:15–16:35</td><td><span class="tag j">JL</span><b>JABBERLOOPのセッティング</b></td><td class="pl">メインステージ</td><td class="at"></td></tr><tr class="live"><td class="t">16:35–17:20</td><td><span class="tag j">JL</span><b class='o'>JABBERLOOP ライブ（45分）</b></td><td class="pl">メインステージ</td><td class="at"></td></tr><tr><td class="t">17:20–17:30</td><td>全体写真撮影（出演者・スタッフ全員）</td><td class="pl">メインステージ</td><td class="at"></td></tr><tr><td class="t"></td><td><span class="tag j">JL</span><b>物販</b>　ホワイエの指定場所で物販可能</td><td class="pl">2階ホワイエ</td><td class="at"></td></tr><tr class="hi"><td class="t">終演後</td><td><span class="tag j">JL</span><b class='o'>現地解散</b>（自由行動）</td><td class="pl">金山ホテル</td><td class="at"></td></tr></table></div><div class="day2"><div class="hd"><span class="day">8/2<br>日</span>
+<h1>2日目・アスナル金山 パフォーマンスステージ</h1><span class="ver">JABBERLOOP さん 工程表／2026-07-30 版</span></div><div class="summary"><div><span class="lb">この日の出番</span><span class="vl"><span class="vl">13:25–14:10</span><small>　アスナル金山 ライブ45分</small></span></div><div><span class="lb">控室</span><span class="vl"><span class="vl">アスナル4階／市民会館 106・107</span></span></div><div><span class="lb">宿泊</span><span class="vl"><span class="vl" style="color:#b3241c;">なし</span><small>　終演後ご自由に</small></span></div></div><div class="tw"><table><tr><th>時刻</th><th>内容</th><th>場所</th><th>担当・メモ</th></tr><tr class="dim"><td class="t">8:30 / 9:30</td><td>運営チーム集合 8:30 ／ 出展社は 9:30 会場入り</td><td class="pl">フォレストホール</td><td class="at">ひでお＝本部</td></tr><tr class="hi"><td class="t">10:00 まで</td><td><span class="tag j">JL</span><b>金山ホテルをチェックアウト</b> → そのあと市民会館へ移動（お時間はご自由に）<br><b class='o'>お荷物は市民会館の楽屋控室 106・107 でお預かりします</b></td><td class="pl">金山ホテル → 市民会館</td><td class="at">細川会長＝楽屋控室（106・107）で荷物をお預かり</td></tr><tr class="dim"><td class="t">12:00–12:20</td><td>（アスナル）東邦高校 マーチングバンド</td><td class="pl">アスナル金山</td><td class="at">現地はみどり楽器とインサイドクルースタッフ</td></tr><tr class="dim"><td class="t">12:20–12:40</td><td>（アスナル）転換20分・ドラムのセッティング</td><td class="pl">アスナル金山</td><td class="at">凛太朗＝ドラムのセッティング</td></tr><tr class="dim"><td class="t">12:40–13:10</td><td>（アスナル）アンサンブルフレンズ</td><td class="pl">アスナル金山</td><td class="at">凛太朗＝ドラム／こなみ＝サックス</td></tr><tr><td class="t">13:10–13:25</td><td><span class="tag j">JL</span><b>転換15分＝JABBERLOOP さんのセッティング</b></td><td class="pl">アスナル金山</td><td class="at">凛太朗＝そのままドラムに入る</td></tr><tr class="live"><td class="t">13:25–14:10</td><td><span class="tag j">JL</span><b class='o'>JABBERLOOP ライブ</b></td><td class="pl">アスナル金山</td><td class="at">ドラムは凛太朗が担当</td></tr><tr><td class="t">14:10 〜</td><td><b>終演・撤収</b><br><span class="tag j">JL</span><b class='o'>終演後はご自由に行動ください。</b>市民会館の楽屋（106・107）は<b>17:30まで</b>ご利用いただけます</td><td class="pl">アスナル金山 → 楽屋</td><td class="at"></td></tr><tr class="dim"><td class="t">17:30</td><td>ステージ全体 終了（撤収は19:00まで）</td><td class="pl">フォレストホール</td><td class="at">ひでお＝撤収の統括</td></tr></table></div></div></div></div></body></html>
