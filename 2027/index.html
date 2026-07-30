@@ -121,6 +121,20 @@
     border-radius: 16px; padding: 6px 20px 18px; margin-top: 18px;
   }
 
+  /* 共有資料（受付ページ限定） */
+  .shared-docs { display: flex; flex-wrap: wrap; gap: 14px; margin: 10px 0 6px; }
+  .shared-card {
+    display: block; width: 220px;
+    background: linear-gradient(160deg, var(--panel2), var(--panel));
+    border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px;
+    text-decoration: none; color: var(--text);
+  }
+  .shared-card:hover { border-color: var(--accent2); }
+  .shared-card-icon { font-size: 24px; }
+  .shared-card-name { font-weight: 700; font-size: 14.5px; margin-top: 6px; }
+  .shared-card-date { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .shared-card-purpose { color: var(--muted); font-size: 12px; margin-top: 6px; }
+
   .foot { text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
   .foot .pill { display:inline-block; background: var(--panel2); border:1px solid var(--line); border-radius: 999px; padding: 4px 12px; margin: 2px; }
   .foot .crosslink { margin-top: 8px; }
@@ -213,6 +227,26 @@
           <div class="cd-date">2027/08/07</div>
           <div class="cd-note">2027/8/7(土)・8/8(日) ※会場予約確定待ち</div>
         </div>
+    </div>
+
+    
+    <div class="section content">
+      <h2>🆕 共有資料</h2>
+      <div class="shared-docs">
+        
+        <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/timetable_flyer_v8.pdf" target="_blank" rel="noopener">
+          <div class="shared-card-icon">📄</div>
+          <div class="shared-card-name">タイムテーブルチラシv8（公開PDF）</div>
+          <div class="shared-card-date">07-29</div>
+          <div class="shared-card-purpose">当日配布チラシの実物。共有用</div>
+        </a>
+        <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/keion_recruit_flyer.pdf" target="_blank" rel="noopener">
+          <div class="shared-card-icon">📄</div>
+          <div class="shared-card-name">高校軽音募集チラシ（公開PDF）</div>
+          <div class="shared-card-date">07-29</div>
+          <div class="shared-card-purpose">募集チラシの実物。共有用</div>
+        </a>
+      </div>
     </div>
 
     <div class="section content">
@@ -314,7 +348,7 @@
 
     <div class="foot">
       <div>
-        <span class="pill">最終ビルド: 2026/07/30 11:54 JST</span>
+        <span class="pill">最終ビルド: 2026/07/30 12:02 JST</span>
         <span class="pill">情報源: docs/逆算年間カレンダー_2027.md</span>
       </div>
       <p style="margin-top:10px;">このページは <code>docs/逆算年間カレンダー_2027.md</code> を編集して再ビルドすると更新されます。</p>
