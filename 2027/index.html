@@ -212,7 +212,10 @@
   /* 共有資料のジャンル分け表示（2027受付ページ限定） */
   .shared-genre { margin: 18px 0; }
   .shared-genre:first-of-type { margin-top: 8px; }
-  .shared-genre-head { font-size: 14px; color: var(--accent2); margin: 0 0 8px; font-weight: 800; }
+  .shared-genre-head { font-size: 14px; color: var(--accent2); margin: 0 0 8px; font-weight: 800; cursor: pointer; user-select: none; }
+  .shared-genre-head::marker { color: var(--muted); }
+  .shared-genre[open] .shared-genre-head { margin-bottom: 10px; }
+  .shared-genre-count { margin-left: 8px; font-size: 11.5px; color: var(--muted); font-weight: 600; }
   .shared-genre .shared-docs { gap: 10px; margin: 0; }
   .shared-genre .shared-card { width: 190px; border-radius: 12px; padding: 12px 14px; }
   .shared-genre .shared-card-icon { font-size: 20px; }
@@ -244,8 +247,8 @@
     <div class="section content">
       <h2>🆕 共有資料</h2>
       
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🎤 メインステージ</h3>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🎤 メインステージ<span class="shared-genre-count">12件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/timetable_0801.pdf" target="_blank" rel="noopener">
@@ -321,9 +324,9 @@
           <div class="shared-card-purpose">ホールに提出したステージ基本セッティング図</div>
         </a>
         </div>
-      </div>
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🎸 ゲスト</h3>
+      </details>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🎸 ゲスト<span class="shared-genre-count">2件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/jabberloop_schedule.html" target="_blank" rel="noopener">
@@ -339,9 +342,9 @@
           <div class="shared-card-purpose">JABBERLOOPの当日行程表</div>
         </a>
         </div>
-      </div>
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🎪 出展・ブース</h3>
+      </details>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🎪 出展・ブース<span class="shared-genre-count">4件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/timetable_booth_2p.pdf" target="_blank" rel="noopener">
@@ -369,9 +372,9 @@
           <div class="shared-card-purpose">ホワイエ配置案</div>
         </a>
         </div>
-      </div>
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🏛 会場</h3>
+      </details>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🏛 会場<span class="shared-genre-count">2件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/hall_request_rooms.pdf" target="_blank" rel="noopener">
@@ -387,9 +390,9 @@
           <div class="shared-card-purpose">フォレストホールの会場全体図</div>
         </a>
         </div>
-      </div>
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🖨 印刷物</h3>
+      </details>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🖨 印刷物<span class="shared-genre-count">4件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/timetable_flyer_v8.pdf" target="_blank" rel="noopener">
@@ -417,9 +420,9 @@
           <div class="shared-card-purpose">機材図鑑チラシ</div>
         </a>
         </div>
-      </div>
-      <div class="shared-genre">
-        <h3 class="shared-genre-head">🎯 運営</h3>
+      </details>
+      <details class="shared-genre">
+        <summary class="shared-genre-head">🎯 運営<span class="shared-genre-count">1件</span></summary>
         <div class="shared-docs">
           
         <a class="shared-card" href="https://rintaro216.github.io/gakki-staff-dashboard/2027/assets/stamprally_flow.pdf" target="_blank" rel="noopener">
@@ -429,7 +432,7 @@
           <div class="shared-card-purpose">スタンプラリー運営の流れ図解</div>
         </a>
         </div>
-      </div>
+      </details>
     </div>
 
     <div class="section content">
@@ -531,7 +534,7 @@
 
     <div class="foot">
       <div>
-        <span class="pill">最終ビルド: 2026/07/30 13:45 JST</span>
+        <span class="pill">最終ビルド: 2026/07/30 13:56 JST</span>
         <span class="pill">情報源: docs/逆算年間カレンダー_2027.md</span>
       </div>
       <p style="margin-top:10px;">このページは <code>docs/逆算年間カレンダー_2027.md</code> を編集して再ビルドすると更新されます。</p>
